@@ -1,11 +1,9 @@
-.link {
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #2a363b;
+/* src/components/Navigation/Navigation.module.css */
+nav {
+  display: flex;
+  gap: 15px;
 }
-
-.link.active {
-  color: #e84a5f;
+nav a {
+  color: #61dafb;
+  text-decoration: none;
 }

@@ -1,38 +1,39 @@
-import { UseDispatch, useDispatch } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
-import { register } from '../../redux/auth/operations';
-import css from './RegistrationForm.modal.css';
+// src/components/RegistrationForm/RegistrationForm.jsx
+import React, { useState } from 'react';
 
-export default function RegistrationForm() {
-  const dispatch = useDispatch();
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
-    actions.resetForm();
+const RegistrationForm = ({ onRegister }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onRegister(name, email, password);
   };
-}
-return (
-  <Formik
-    initialValues={{
-      name: '',
-      email: '',
-      password: '',
-    }}
-    onSubmit={handleSubmit}
-  >
-    <Form className={css.form} autoComplete="off">
-      <label className={css.label}>
-        Username
-        <Field type="text" name="name" />
-      </label>
-      <label className={css.label}>
-        Email
-        <Field type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <Field type="password" name="password" />
-      </label>
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
       <button type="submit">Register</button>
-    </Form>
-  </Formik>
-);
+    </form>
+  );
+};
+
+export default RegistrationForm;

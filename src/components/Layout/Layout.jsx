@@ -1,11 +1,14 @@
-import AppBAr from '../AppBar/AppBar';
-import css from './Layout.modal.css';
+// src/components/Layout/Layout.jsx
+import React from 'react';
+import AppBar from '../AppBar/AppBar';
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
   return (
-    <div className={css.container}>
-      <AppBAr />
-      {children}
+    <div>
+      <AppBar />
+      <main>{children}</main>
     </div>
   );
-}
+};
+
+export default Layout;

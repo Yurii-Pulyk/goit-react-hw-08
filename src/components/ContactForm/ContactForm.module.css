@@ -1,0 +1,10 @@
+/* src/components/ContactForm/ContactForm.module.css */
+form {
+  display: flex;
+  flex-direction: column;
+}
+input,
+button {
+  margin-bottom: 10px;
+  padding: 8px;
+}
