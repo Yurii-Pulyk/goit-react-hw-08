@@ -27,18 +27,9 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route
-          path="/register"
-          element={<RestrictedRoute component={RegistrationPage} />}
-        />
-        <Route
-          path="/login"
-          element={<RestrictedRoute component={LoginPage} />}
-        />
-        <Route
-          path="/contacts"
-          element={<PrivateRoute component={ContactsPage} />}
-        />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
       </Route>
     </Routes>
   );
