@@ -1,16 +1,16 @@
 // src/pages/ContactsPage.jsx
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts, deleteContact } from '../redux/contacts/operations';
+import { fetchContacts, deleteContact } from '../../redux/contacts/operations';
 import {
   selectContacts,
   selectLoading,
   selectError,
-} from '../redux/contacts/selectors';
-import { selectNameFilter } from '../redux/filters/selectors';
-import { setFilter } from '../redux/filters/filtersSlice';
-import ContactForm from '../components/ContactForm';
-import ContactList from '../components/ContactList';
-import Loader from '../components/Loader';
+} from '../../redux/contacts/selectors';
+import { selectNameFilter } from '../../redux/filters/selectors';
+import { setFilter } from '../../redux/filters/slice';
+import ContactForm from '../../components/ContactForm/ContactForm';
+import ContactList from '../../components/ContactList/ContactList';
+import Loader from '../../components/LoginForm/LoginForm';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();

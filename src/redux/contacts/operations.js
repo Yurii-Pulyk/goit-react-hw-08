@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from '../../services/api'; // Припускаємо, що ти використовуєш свою API
+import * as api from '../../services'; // Припускаємо, що ти використовуєш свою API
 
 // Операція для отримання контактів
 export const fetchContacts = createAsyncThunk(
