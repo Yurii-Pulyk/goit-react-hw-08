@@ -1,4 +1,4 @@
-// src/pages/ContactsPage.jsx
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts, deleteContact } from '../../redux/contacts/operations';
 import {

@@ -21,15 +21,33 @@ export default function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <p>Loading...</p>
-  ) : (
+  if (isRefreshing) return <p>Loading...</p>;
+
+  return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              component={<RegistrationPage />}
+              redirectTo="/contacts"
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+          }
+        />
       </Route>
     </Routes>
   );
