@@ -1,12 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import AppBar from "../AppBar/AppBar";
 
-const Layout = () => {
+export default function Layout({ children }) {
   return (
     <div>
-      {/* Тут може бути навігація або інші спільні елементи */}
-      <Outlet />
+      <AppBar></AppBar>
+      {children}
     </div>
   );
-};
-
-export default Layout;
+}

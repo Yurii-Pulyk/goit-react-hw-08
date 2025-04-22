@@ -1,7 +1,13 @@
-/* src/components/UserMenu/UserMenu.module.css */
-button {
-  background-color: red;
-  color: white;
-  border: none;
-  cursor: pointer;
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+.text {
+  font-size: 45px;
 }

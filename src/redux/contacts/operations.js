@@ -1,41 +1,39 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as api from '../../services'; // Припускаємо, що ти використовуєш свою API
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../auth/operations";
 
-// Операція для отримання контактів
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchContacts',
-  async (_, { rejectWithValue }) => {
+  "contacts/fetchContacts",
+  async (_, thunkAPI) => {
     try {
-      const response = await api.getContacts();
-      return response.data;
+      const res = await api.get("/contacts");
+      return res.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// Операція для додавання контакту
 export const addContact = createAsyncThunk(
-  'contacts/addContact',
-  async (contact, { rejectWithValue }) => {
+  "contacts/addContact",
+  async (newContact, thunkAPI) => {
     try {
-      const response = await api.addContact(contact);
-      return response.data;
+      console.log("Sending contact:", newContact);
+      const res = await api.post("/contacts", newContact);
+      return res.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// Операція для видалення контакту
 export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (id, { rejectWithValue }) => {
+  "contacts/deleteContact",
+  async (contactId, thunkAPI) => {
     try {
-      await api.deleteContact(id);
-      return { id };
+      const res = await api.delete(`/contacts/${contactId}`);
+      return res.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

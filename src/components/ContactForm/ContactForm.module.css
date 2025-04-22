@@ -1,10 +1,21 @@
-/* src/components/ContactForm/ContactForm.module.css */
-form {
+.container {
+  gap: 35px;
+  width: 450px;
+  padding: 15px;
+  margin-bottom: 45px;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.containerField {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  margin-bottom: 15px;
 }
-input,
-button {
-  margin-bottom: 10px;
-  padding: 8px;
+
+.btn {
+  margin-top: 20px;
 }

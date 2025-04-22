@@ -5,10 +5,15 @@
   max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 40px;
 }
 
 .link {
-  padding: 10px 30px;
   color: white;
+  padding: 10px 30px;
+  background-color: rgb(117, 117, 117);
+}
+
+.link:hover {
+  color: rgb(197, 197, 197);
+  background-color: rgb(73, 73, 73);
 }
