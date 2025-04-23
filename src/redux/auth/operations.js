@@ -3,9 +3,8 @@ import { fetchContacts } from '../contacts/operations';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://67eceaf84387d9117bbb77ae.mockapi.io',
+  baseURL: 'https://connections-api.goit.global',
 });
-
 const setAuthHeader = value => {
   return (api.defaults.headers.common.Authorization = value);
 };
