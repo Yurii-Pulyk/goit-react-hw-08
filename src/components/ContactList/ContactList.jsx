@@ -1,13 +1,13 @@
 import Contact from '../Contact/Contact';
 import css from './ContactList.module.css';
 import { useSelector } from 'react-redux';
-import { selectFilteredContacts } from '../../redux/contacts/slice';
+import { selectFilteredContacts } from '../../redux/contacts/slice'; // Цей імпорт вже правильний
 
 export default function ContactList() {
-  const filteredContacts = useSelector(selectFilteredContacts);
+  const filteredContacts = useSelector(selectFilteredContacts); // Підключення правильного селектора
 
   return (
-    <ul>
+    <div>
       {filteredContacts.length > 0 ? (
         filteredContacts.map(contact => (
           <li className={css.item} key={contact.id}>
@@ -17,6 +17,6 @@ export default function ContactList() {
       ) : (
         <p>No contacts found</p>
       )}
-    </ul>
+    </div>
   );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { setAuthHeader } from '../auth/operations'; // Імпортуємо setAuthHeader
 
 const api = axios.create({
-  baseURL: 'https://connections-api.goit.global', // чи твій API URL
+  baseURL: 'https://connections-api.goit.global/', // чи твій API URL
 });
 
 export const fetchContacts = createAsyncThunk(

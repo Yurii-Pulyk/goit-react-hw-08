@@ -52,7 +52,7 @@ export default function App() {
               }
             ></Route>
             <Route
-              path="contacts"
+              path="/contacts"
               element={
                 <PrivateRoute
                   element={<ContactsPage />}
