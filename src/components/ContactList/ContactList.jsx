@@ -1,22 +1,32 @@
-import Contact from '../Contact/Contact';
-import css from './ContactList.module.css';
-import { useSelector } from 'react-redux';
-import { selectFilteredContacts } from '../../redux/contacts/slice'; // Цей імпорт вже правильний
+import { useDispatch, useSelector } from "react-redux";
+import { deleteContact } from "../../redux/contacts/operations";
+import { selectVisibleContacts } from "../../redux/filter/selector";
+import Contact from "../Contact/Contact";
+import css from "./ContactList.module.css";
+
+const formatPhoneNumber = (phone) => {
+  return phone.replace(/\sx\d+$/, "");
+};
 
 export default function ContactList() {
-  const filteredContacts = useSelector(selectFilteredContacts); // Підключення правильного селектора
+  const dispatch = useDispatch();
+
+  const visibleContacts = useSelector(selectVisibleContacts);
+
+  const handleDelete = (id) => {
+    dispatch(deleteContact(id));
+  };
 
   return (
-    <div>
-      {filteredContacts.length > 0 ? (
-        filteredContacts.map(contact => (
-          <li className={css.item} key={contact.id}>
-            <Contact data={contact} />
-          </li>
-        ))
-      ) : (
-        <p>No contacts found</p>
-      )}
-    </div>
+    <ul className={css.list}>
+      {visibleContacts.map((contact) => (
+        <li key={contact.id} className={css.iteam}>
+          <Contact
+            contact={{ ...contact, number: formatPhoneNumber(contact.number) }}
+            onDelete={handleDelete}
+          />
+        </li>
+      ))}
+    </ul>
   );
 }

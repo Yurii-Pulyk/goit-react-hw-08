@@ -1,26 +1,18 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { fetchContacts } from '../contacts/operations';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const api = axios.create({
-  baseURL: 'https://connections-api.goit.global',
-});
-
-export const setAuthHeader = value => {
-  api.defaults.headers.common.Authorization = value;
-};
-
-export const clearAuthHeader = () => {
-  delete api.defaults.headers.common.Authorization;
+const setAuthHeader = (value) => {
+  axios.defaults.headers.common.Authorization = value;
 };
 
 export const register = createAsyncThunk(
-  'auth/register',
-  async (credentials, thunkAPI) => {
+  "auth/register",
+  async (credential, thunkAPI) => {
     try {
-      const response = await api.post('/users/signup', credentials);
-      setAuthHeader(`Bearer ${response.data.token}`);
-      return response.data;
+      const responce = await axios.post("/users/signup", credential);
+      setAuthHeader(`Bearer ${responce.data.token}`);
+
+      return responce.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -28,36 +20,34 @@ export const register = createAsyncThunk(
 );
 
 export const logIn = createAsyncThunk(
-  'auth/login',
-  async (credentials, thunkAPI) => {
+  "auth/login",
+  async (credential, thunkAPI) => {
     try {
-      const response = await api.post('/users/login', credentials);
-      setAuthHeader(`Bearer ${response.data.token}`);
-      thunkAPI.dispatch(fetchContacts());
-      return response.data;
+      const responce = await axios.post("/users/login", credential);
+
+      setAuthHeader(`Bearer ${responce.data.token}`);
+
+      return responce.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    await api.post('/users/logout');
-    clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
+export const logOut = createAsyncThunk("auth/logout", async () => {
+  await axios.post("/users/logout");
+  setAuthHeader("");
 });
 
 export const refreshUser = createAsyncThunk(
-  'auth/refresh',
+  "auth/refresh",
   async (_, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       setAuthHeader(`Bearer ${reduxState.auth.token}`);
-      const response = await api.get('/users/current');
-      return response.data;
+
+      const responce = await axios.get("/users/current");
+      return responce.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -69,5 +59,3 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
-
-export default api;

@@ -1,14 +1,9 @@
-.container {
+.nav {
   display: flex;
-  flex-direction: row;
-  gap: 45px;
-  max-width: 1280px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 40px;
+  gap: 20px;
 }
 
-.link {
-  padding: 10px 30px;
-  color: white;
+.navLink {
+  font-weight: 700;
+  font-size: 20px;
 }

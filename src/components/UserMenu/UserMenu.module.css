@@ -1,13 +1,14 @@
-.container {
+.el {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 60px;
+  align-items: center;
+  gap: 15px;
 }
-
-.text {
-  font-size: 45px;
+.name {
+  font-weight: 600;
+  font-size: 18px;
+}
+.btn {
+  background-color: rgb(141, 112, 196);
+  height: 50px;
+  color: white;
 }
